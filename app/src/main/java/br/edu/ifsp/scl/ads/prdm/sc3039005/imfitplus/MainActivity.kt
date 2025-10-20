@@ -1,7 +1,9 @@
 package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,5 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(amb.toolbarIn.toolbar)
         supportActionBar?.subtitle = "Boas Vindas"
+
+        amb.startBt.setOnClickListener {
+            startActivity(Intent(this, PersonalDataActivity::class.java))
+        }
     }
 }
