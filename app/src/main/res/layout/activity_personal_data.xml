@@ -96,12 +96,14 @@
                 app:layout_constraintTop_toBottomOf="@id/genre_label_tv">
 
                 <RadioButton
+                    android:id="@+id/male_rb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Masculino" />
 
                 <RadioButton
+                    android:id="@+id/famale_rb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

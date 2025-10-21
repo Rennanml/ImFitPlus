@@ -1,9 +1,12 @@
 package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityPersonalDataBinding
 import kotlin.math.pow
@@ -13,7 +16,7 @@ class PersonalDataActivity : AppCompatActivity() {
         ActivityPersonalDataBinding.inflate(layoutInflater)
     }
 
-
+    private lateinit var imcarl: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +39,21 @@ class PersonalDataActivity : AppCompatActivity() {
             if (!validateFields()) {
                 Toast.makeText(this, "Corrija os campos marcados", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, calculate().toString(), Toast.LENGTH_LONG).show()
+                val data: PersonalData = createDto()
+
+                imcarl.launch(Intent(this, IMCResultActivity::class.java)
+                    .apply {
+                        putExtra("PERSONAL_DATA" ,data)
+                        putExtra("IMC_VALUE", calculate())
+                        startActivity(this)
+                    })
+            }
+        }
+
+        imcarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result ->
+            if (result.resultCode == RESULT_OK) {
+
             }
         }
     }
@@ -50,6 +67,26 @@ class PersonalDataActivity : AppCompatActivity() {
         }
 
         return 0.0;
+    }
+
+    private fun createDto(): PersonalData {
+        val name = apdb.nameEt.text.toString()
+        val age = apdb.ageEt.text.toString().toInt()
+        val height = apdb.heightEt.text.toString().toDouble()
+        val weight = apdb.weightEt.text.toString().toDouble()
+        val activityLevel = apdb.activityLevelSp.selectedItem.toString()
+
+        val selectedGenderId = apdb.genreRg.checkedRadioButtonId
+        val gender = if (selectedGenderId == R.id.male_rb) "Masculino" else "Feminino"
+
+        return PersonalData(
+            name,
+            age,
+            gender,
+            height,
+            weight,
+            activityLevel
+        )
     }
 
     private fun validateFields(): Boolean {
