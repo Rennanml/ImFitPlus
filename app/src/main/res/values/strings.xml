@@ -5,11 +5,12 @@
     <string name="personal_data_title">Insira seus dados</string>
     <string name="name">Nome</string>
     <string name="age">Idade</string>
-    <string name="height">Altura</string>
-    <string name="weight">Peso</string>
+    <string name="height">Altura (m)</string>
+    <string name="weight">Peso (kg)</string>
     <string name="calcular_imc">Calcular IMC</string>
 
     <string-array name="activity_levels">
+        <item>Selecione</item>
         <item>Sedentário</item>
         <item>Leve</item>
         <item>Moderado</item>

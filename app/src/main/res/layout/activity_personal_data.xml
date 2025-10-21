@@ -124,8 +124,8 @@
                 android:id="@+id/height_et"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Sua altura em centímetros"
-                android:inputType="number"
+                android:hint="Sua altura em metros"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/height_label_tv" />
