@@ -39,13 +39,15 @@ class PersonalDataActivity : AppCompatActivity() {
             if (!validateFields()) {
                 Toast.makeText(this, "Corrija os campos marcados", Toast.LENGTH_SHORT).show()
             } else {
+                it.isEnabled = false
+
                 val data: PersonalData = createDto()
 
                 imcarl.launch(Intent(this, IMCResultActivity::class.java)
                     .apply {
                         putExtra("PERSONAL_DATA" ,data)
                         putExtra("IMC_VALUE", calculate())
-                        startActivity(this)
+//                        startActivity(this) -- It was opening 2 activities
                     })
             }
         }
@@ -56,6 +58,11 @@ class PersonalDataActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        apdb.calculateBt.isEnabled = true
     }
 
     private fun calculate(): Double {
@@ -130,5 +137,4 @@ class PersonalDataActivity : AppCompatActivity() {
 
         return isValid
     }
-
 }
