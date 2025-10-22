@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityImcresultBinding
 import kotlin.properties.Delegates
@@ -34,6 +35,13 @@ class IMCResultActivity : AppCompatActivity() {
             intent.getSerializableExtra("PERSONAL_DATA", PersonalData::class.java)!!
         } else {
             (intent.getSerializableExtra("PERSONAL_DATA") as? PersonalData)!!
+        }
+
+        tmbarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                result ->
+            if (result.resultCode == RESULT_OK) {
+
+            }
         }
 
         // Get IMC_VALUE from intent

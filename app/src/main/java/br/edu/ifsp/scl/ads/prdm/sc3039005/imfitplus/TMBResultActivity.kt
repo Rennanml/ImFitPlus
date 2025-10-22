@@ -2,6 +2,7 @@ package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
 
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,8 +30,13 @@ class TMBResultActivity : AppCompatActivity() {
             (intent.getSerializableExtra("PERSONAL_DATA") as? PersonalData)!!
         }
 
-        var tmb: Double = calculeTMB()
+        setViewValues()
+    }
 
+    private fun setViewValues() {
+        atmbb.tmbTv.text = calculeTMB().toString()
+        atmbb.nameTv.text = personalData.name
+        atmbb.genreTv.text = personalData.gender
     }
 
     private fun calculeTMB(): Double {
@@ -44,5 +50,13 @@ class TMBResultActivity : AppCompatActivity() {
         } else {
             655 + (9.6 * weight) + (1.8 * heigth * 100) - (4.7 * age)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -11,4 +11,58 @@
         android:id="@+id/toolbar_in"
         layout="@layout/toolbar"/>
 
+    <TextView
+        android:id="@+id/name_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_in" />
+
+    <TextView
+        android:id="@+id/name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/name_label_tv" />
+
+    <TextView
+        android:id="@+id/genre_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sexo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/name_tv" />
+
+    <TextView
+        android:id="@+id/genre_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/genre_label_tv" />
+
+    <TextView
+        android:id="@+id/tmb_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TMB"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/genre_tv" />
+
+    <TextView
+        android:id="@+id/tmb_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tmb_label_tv" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
