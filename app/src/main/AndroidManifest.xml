@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImFitPlus">
         <activity
+            android:name=".TMBResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".IMCResultActivity"
             android:exported="false" />
         <activity

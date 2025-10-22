@@ -1,9 +1,11 @@
 package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
 
+import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityImcresultBinding
 import kotlin.properties.Delegates
@@ -12,6 +14,8 @@ class IMCResultActivity : AppCompatActivity() {
     val aimcb: ActivityImcresultBinding by lazy {
         ActivityImcresultBinding.inflate(layoutInflater)
     }
+
+    private lateinit var tmbarl: ActivityResultLauncher<Intent>
 
     lateinit var personalData: PersonalData
     var imcValue by Delegates.notNull<Double>()
@@ -40,6 +44,13 @@ class IMCResultActivity : AppCompatActivity() {
         // Buttons onClickListeners
         aimcb.backBt.setOnClickListener {
             finish()
+        }
+
+        aimcb.calculateBt.setOnClickListener {
+            tmbarl.launch(
+                Intent(this, TMBResultActivity::class.java).apply {
+                    putExtra("PERSONAL_DATA", personalData)
+                })
         }
     }
 
