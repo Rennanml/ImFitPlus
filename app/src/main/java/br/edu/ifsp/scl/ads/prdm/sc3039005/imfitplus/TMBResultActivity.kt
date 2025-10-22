@@ -1,9 +1,12 @@
 package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,6 +16,8 @@ class TMBResultActivity : AppCompatActivity() {
     private val atmbb: ActivityTmbresultBinding by lazy {
         ActivityTmbresultBinding.inflate(layoutInflater)
     }
+
+    private lateinit var iwarl: ActivityResultLauncher<Intent>
 
     private lateinit var personalData: PersonalData
 
@@ -24,6 +29,13 @@ class TMBResultActivity : AppCompatActivity() {
         supportActionBar?.subtitle = "Gasto Calórico Diário"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        iwarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result ->
+            if (result.resultCode == RESULT_OK) {
+
+            }
+        }
+
         personalData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getSerializableExtra("PERSONAL_DATA", PersonalData::class.java)!!
         } else {
@@ -31,6 +43,17 @@ class TMBResultActivity : AppCompatActivity() {
         }
 
         setViewValues()
+
+        // Buttons set on click listeners
+        atmbb.backBt.setOnClickListener {
+            finish()
+        }
+
+        atmbb.iwBt.setOnClickListener {
+            iwarl.launch(Intent(this, IdealWeightActivity::class.java).apply {
+                putExtra("PERSONAL_DATA", personalData)
+            })
+        }
     }
 
     private fun setViewValues() {

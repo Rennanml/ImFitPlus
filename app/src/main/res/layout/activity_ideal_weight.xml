@@ -5,73 +5,55 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TMBResultActivity">
+    tools:context=".IdealWeightActivity">
 
     <include
         android:id="@+id/toolbar_in"
         layout="@layout/toolbar"/>
 
     <TextView
-        android:id="@+id/name_label_tv"
+        android:id="@+id/iw_label_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nome"
+        android:layout_margin="10dp"
+        android:text="Peso Ideal"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_margin="10dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar_in" />
 
     <TextView
-        android:id="@+id/name_tv"
+        android:id="@+id/iw_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/name_label_tv" />
+        app:layout_constraintTop_toBottomOf="@id/iw_label_tv" />
 
     <TextView
-        android:id="@+id/genre_label_tv"
+        android:id="@+id/wd_label_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sexo"
-        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/iw_tv"
+        android:text="Peso - Peso ideal"
         android:textStyle="bold"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/name_tv" />
-
-    <TextView
-        android:id="@+id/genre_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/genre_label_tv" />
-
-    <TextView
-        android:id="@+id/tmb_label_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TMB"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/genre_tv" />
+        android:layout_margin="10dp" />
 
     <TextView
-        android:id="@+id/tmb_tv"
+        android:id="@+id/wd_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/wd_label_tv"
         android:textSize="20sp"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tmb_label_tv" />
+        android:layout_margin="10dp" />
 
-    <Button
-        android:id="@+id/iw_bt"
+    <CheckBox
+        android:id="@+id/back_cb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Voltar à home?"
         android:layout_margin="10dp"
-        android:text="Calcular Peso Ideal"
-        app:layout_constraintBottom_toTopOf="@id/back_bt" />
+        app:layout_constraintBottom_toTopOf="@id/back_bt"/>
 
     <Button
         android:id="@+id/back_bt"
@@ -80,5 +62,6 @@
         android:layout_margin="10dp"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
