@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,7 +33,8 @@ class TMBResultActivity : AppCompatActivity() {
         iwarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
             if (result.resultCode == RESULT_OK) {
-
+                val msg = (result.data as Intent).getStringExtra("CALLBACK_MESSAGE")
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -46,6 +48,7 @@ class TMBResultActivity : AppCompatActivity() {
 
         // Buttons set on click listeners
         atmbb.backBt.setOnClickListener {
+            prepareResult()
             finish()
         }
 
@@ -54,6 +57,15 @@ class TMBResultActivity : AppCompatActivity() {
                 putExtra("PERSONAL_DATA", personalData)
             })
         }
+    }
+
+    private fun prepareResult() {
+        setResult(
+            RESULT_OK, Intent().putExtra(
+                "CALLBACK_MESSAGE",
+                "Voltando da página: Gasto calórico diário"
+            )
+        )
     }
 
     private fun setViewValues() {
@@ -77,6 +89,7 @@ class TMBResultActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
+            prepareResult()
             finish()
             return true
         }

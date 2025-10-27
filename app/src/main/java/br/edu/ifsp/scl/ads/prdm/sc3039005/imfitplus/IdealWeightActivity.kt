@@ -39,11 +39,20 @@ class IdealWeightActivity : AppCompatActivity() {
         aiwb.backBt.setOnClickListener {
             if (aiwb.backCb.isChecked) {
                 startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                prepareResult()
             }
 
             finish()
         }
 
+    }
+
+    private fun prepareResult() {
+        setResult(
+            RESULT_OK,
+            Intent().putExtra("CALLBACK_MESSAGE", "Voltando da página: Peso ideal")
+        )
     }
 
     private fun setViewValues() {
@@ -56,6 +65,7 @@ class IdealWeightActivity : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
+            prepareResult()
             finish()
             true
         }

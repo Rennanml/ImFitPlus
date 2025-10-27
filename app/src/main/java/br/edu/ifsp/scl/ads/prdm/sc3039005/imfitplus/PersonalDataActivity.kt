@@ -47,7 +47,6 @@ class PersonalDataActivity : AppCompatActivity() {
                     .apply {
                         putExtra("PERSONAL_DATA" ,data)
                         putExtra("IMC_VALUE", calculate())
-//                        startActivity(this) -- It was opening 2 activities
                     })
             }
         }
@@ -55,7 +54,8 @@ class PersonalDataActivity : AppCompatActivity() {
         imcarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
             if (result.resultCode == RESULT_OK) {
-
+                val msg = (result.data as Intent).getStringExtra("CALLBACK_MESSAGE")
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
             }
         }
     }

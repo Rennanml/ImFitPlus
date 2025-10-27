@@ -5,6 +5,7 @@ import android.icu.text.DecimalFormat
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +29,7 @@ class IMCResultActivity : AppCompatActivity() {
         setContentView(aimcb.root)
 
         setSupportActionBar(aimcb.toolbarIn.toolbar)
-        supportActionBar?.subtitle = "Dados Pessoais"
+        supportActionBar?.subtitle = "Calculo IMC"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         personalData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -40,7 +41,8 @@ class IMCResultActivity : AppCompatActivity() {
         tmbarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 result ->
             if (result.resultCode == RESULT_OK) {
-
+                val msg = (result.data as Intent).getStringExtra("CALLBACK_MESSAGE")
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -51,6 +53,7 @@ class IMCResultActivity : AppCompatActivity() {
 
         // Buttons onClickListeners
         aimcb.backBt.setOnClickListener {
+            prepareResult()
             finish()
         }
 
@@ -60,6 +63,13 @@ class IMCResultActivity : AppCompatActivity() {
                     putExtra("PERSONAL_DATA", personalData)
                 })
         }
+    }
+
+    private fun prepareResult() {
+        setResult(
+            RESULT_OK,
+            Intent().putExtra("CALLBACK_MESSAGE", "Voltando da tela: Calculo IMC")
+        )
     }
 
     private fun setViewTexts() {
@@ -82,6 +92,7 @@ class IMCResultActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
+            prepareResult()
             finish()
             return true
         }
