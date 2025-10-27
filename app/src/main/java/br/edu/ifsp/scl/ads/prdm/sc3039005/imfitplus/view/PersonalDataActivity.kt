@@ -10,6 +10,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.R
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityPersonalDataBinding
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.CALLBACK_MESSAGE
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.IMC_VALUE
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.PERSONAL_DATA
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
 import kotlin.math.pow
 
@@ -47,8 +50,8 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 imcarl.launch(Intent(this, IMCResultActivity::class.java)
                     .apply {
-                        putExtra("PERSONAL_DATA" ,data)
-                        putExtra("IMC_VALUE", calculate())
+                        putExtra(PERSONAL_DATA ,data)
+                        putExtra(IMC_VALUE, calculate())
                     })
             }
         }
@@ -56,7 +59,7 @@ class PersonalDataActivity : AppCompatActivity() {
         imcarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
             if (result.resultCode == RESULT_OK) {
-                val msg = (result.data as Intent).getStringExtra("CALLBACK_MESSAGE")
+                val msg = (result.data as Intent).getStringExtra(CALLBACK_MESSAGE)
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
             }
         }

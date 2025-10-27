@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityIdealWeightBinding
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.CALLBACK_MESSAGE
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.PERSONAL_DATA
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
 import kotlin.math.pow
 
@@ -26,9 +28,9 @@ class IdealWeightActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         personalData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getSerializableExtra("PERSONAL_DATA", PersonalData::class.java)!!
+            intent.getSerializableExtra(PERSONAL_DATA, PersonalData::class.java)!!
         } else {
-            (intent.getSerializableExtra("PERSONAL_DATA") as? PersonalData)!!
+            (intent.getSerializableExtra(PERSONAL_DATA) as? PersonalData)!!
         }
 
         setViewValues()
@@ -50,7 +52,7 @@ class IdealWeightActivity : AppCompatActivity() {
     private fun prepareResult() {
         setResult(
             RESULT_OK,
-            Intent().putExtra("CALLBACK_MESSAGE", "Voltando da página: Peso ideal")
+            Intent().putExtra(CALLBACK_MESSAGE, "Voltando da página: Peso ideal")
         )
     }
 

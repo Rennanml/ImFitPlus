@@ -11,6 +11,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityImcresultBinding
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.CALLBACK_MESSAGE
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.IMC_VALUE
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.PERSONAL_DATA
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
 import kotlin.properties.Delegates
 
@@ -35,21 +38,21 @@ class IMCResultActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         personalData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getSerializableExtra("PERSONAL_DATA", PersonalData::class.java)!!
+            intent.getSerializableExtra(PERSONAL_DATA, PersonalData::class.java)!!
         } else {
-            (intent.getSerializableExtra("PERSONAL_DATA") as? PersonalData)!!
+            (intent.getSerializableExtra(PERSONAL_DATA) as? PersonalData)!!
         }
 
         tmbarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 result ->
             if (result.resultCode == RESULT_OK) {
-                val msg = (result.data as Intent).getStringExtra("CALLBACK_MESSAGE")
+                val msg = (result.data as Intent).getStringExtra(CALLBACK_MESSAGE)
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
             }
         }
 
         // Get IMC_VALUE from intent
-        imcValue = intent.getDoubleExtra("IMC_VALUE", 0.0)
+        imcValue = intent.getDoubleExtra(IMC_VALUE, 0.0)
 
         setViewTexts()
 
@@ -62,7 +65,7 @@ class IMCResultActivity : AppCompatActivity() {
         aimcb.calculateBt.setOnClickListener {
             tmbarl.launch(
                 Intent(this, TMBResultActivity::class.java).apply {
-                    putExtra("PERSONAL_DATA", personalData)
+                    putExtra(PERSONAL_DATA, personalData)
                 })
         }
     }
@@ -70,7 +73,7 @@ class IMCResultActivity : AppCompatActivity() {
     private fun prepareResult() {
         setResult(
             RESULT_OK,
-            Intent().putExtra("CALLBACK_MESSAGE", "Voltando da tela: Calculo IMC")
+            Intent().putExtra(CALLBACK_MESSAGE, "Voltando da tela: Calculo IMC")
         )
     }
 
