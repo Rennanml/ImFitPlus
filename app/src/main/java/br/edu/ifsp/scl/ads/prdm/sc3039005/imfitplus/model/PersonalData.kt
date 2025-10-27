@@ -1,4 +1,4 @@
-package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
+package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model
 
 import java.io.Serializable
 

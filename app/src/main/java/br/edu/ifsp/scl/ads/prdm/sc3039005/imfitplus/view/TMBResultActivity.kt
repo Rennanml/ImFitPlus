@@ -1,17 +1,16 @@
-package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
+package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.view
 
+import android.R
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityTmbresultBinding
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
 
 class TMBResultActivity : AppCompatActivity() {
     private val atmbb: ActivityTmbresultBinding by lazy {
@@ -88,7 +87,7 @@ class TMBResultActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
+        if (item.itemId == R.id.home) {
             prepareResult()
             finish()
             return true

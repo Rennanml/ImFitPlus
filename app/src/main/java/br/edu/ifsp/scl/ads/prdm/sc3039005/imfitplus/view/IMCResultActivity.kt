@@ -1,5 +1,6 @@
-package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
+package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.view
 
+import android.R
 import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.os.Build
@@ -10,6 +11,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityImcresultBinding
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
 import kotlin.properties.Delegates
 
 class IMCResultActivity : AppCompatActivity() {
@@ -91,7 +93,7 @@ class IMCResultActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
+        if (item.itemId == R.id.home) {
             prepareResult()
             finish()
             return true

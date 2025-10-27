@@ -1,4 +1,4 @@
-package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus
+package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.R
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityPersonalDataBinding
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
 import kotlin.math.pow
 
 class PersonalDataActivity : AppCompatActivity() {
