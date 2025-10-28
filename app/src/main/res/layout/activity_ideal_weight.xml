@@ -48,19 +48,19 @@
         android:layout_margin="10dp" />
 
     <CheckBox
-        android:id="@+id/back_cb"
+        android:id="@+id/log_cb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voltar à home?"
+        android:text="Salvar log?"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@id/back_bt"/>
+        app:layout_constraintBottom_toTopOf="@id/finish_bt"/>
 
     <Button
-        android:id="@+id/back_bt"
+        android:id="@+id/finish_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Voltar"
+        android:text="Finalizar"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 

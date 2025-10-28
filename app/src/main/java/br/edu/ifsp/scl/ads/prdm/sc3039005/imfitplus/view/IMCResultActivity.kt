@@ -14,7 +14,9 @@ import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityImcresul
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.CALLBACK_MESSAGE
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.IMC_VALUE
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.PERSONAL_DATA
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.RESULT_DATA
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.ResultData
 import kotlin.properties.Delegates
 
 class IMCResultActivity : AppCompatActivity() {
@@ -66,6 +68,7 @@ class IMCResultActivity : AppCompatActivity() {
             tmbarl.launch(
                 Intent(this, TMBResultActivity::class.java).apply {
                     putExtra(PERSONAL_DATA, personalData)
+                    putExtra(RESULT_DATA, ResultData(imcValue, null))
                 })
         }
     }

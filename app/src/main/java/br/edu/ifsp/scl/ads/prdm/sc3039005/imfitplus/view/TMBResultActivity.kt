@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityTmbresultBinding
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.CALLBACK_MESSAGE
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.PERSONAL_DATA
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.RESULT_DATA
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.ResultData
 
 class TMBResultActivity : AppCompatActivity() {
     private val atmbb: ActivityTmbresultBinding by lazy {
@@ -39,13 +41,19 @@ class TMBResultActivity : AppCompatActivity() {
             }
         }
 
-        personalData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getSerializableExtra(PERSONAL_DATA, PersonalData::class.java)!!
+        var resultData: ResultData
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            personalData = intent.getSerializableExtra(PERSONAL_DATA, PersonalData::class.java)!!
+            resultData = intent.getSerializableExtra(RESULT_DATA, ResultData::class.java)!!
         } else {
-            (intent.getSerializableExtra(PERSONAL_DATA) as? PersonalData)!!
+            personalData = (intent.getSerializableExtra(PERSONAL_DATA) as? PersonalData)!!
+            resultData = (intent.getSerializableExtra(RESULT_DATA) as? ResultData)!!
         }
 
+
         setViewValues()
+        resultData.tmbValue = calculeTMB()
 
         // Buttons set on click listeners
         atmbb.backBt.setOnClickListener {
@@ -53,9 +61,11 @@ class TMBResultActivity : AppCompatActivity() {
             finish()
         }
 
+
         atmbb.iwBt.setOnClickListener {
             iwarl.launch(Intent(this, IdealWeightActivity::class.java).apply {
                 putExtra(PERSONAL_DATA, personalData)
+                putExtra(RESULT_DATA, resultData)
             })
         }
     }

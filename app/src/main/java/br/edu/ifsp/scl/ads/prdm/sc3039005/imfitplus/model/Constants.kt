@@ -4,4 +4,5 @@ object Constants {
     val CALLBACK_MESSAGE = "CALLBACK_MESSAGE"
     val IMC_VALUE = "IMC_VALUE"
     val PERSONAL_DATA = "PERSONAL_DATA"
+    val RESULT_DATA = "RESULT_DATA"
 }
