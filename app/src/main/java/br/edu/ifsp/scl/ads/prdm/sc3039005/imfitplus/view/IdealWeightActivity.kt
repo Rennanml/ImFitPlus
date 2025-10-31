@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityIdealWeightBinding
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.CALLBACK_MESSAGE
@@ -23,6 +26,8 @@ class IdealWeightActivity : AppCompatActivity() {
     private val aiwb: ActivityIdealWeightBinding by lazy {
         ActivityIdealWeightBinding.inflate(layoutInflater)
     }
+
+    private lateinit var hsarl: ActivityResultLauncher<Intent>
 
     private lateinit var personalData: PersonalData
 
@@ -59,6 +64,23 @@ class IdealWeightActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
+        }
+
+        hsarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                result ->
+            if (result.resultCode == RESULT_OK) {
+                Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        aiwb.summaryBt.setOnClickListener {
+            hsarl.launch(
+                Intent(this, HealthSummaryActivity::class.java).apply {
+                    putExtra(PERSONAL_DATA, personalData)
+                    putExtra(RESULT_DATA, resultData)
+                    putExtra("IMC_CATEGORY", intent.getStringExtra("IMC_CATEGORY").toString())
+                }
+            )
         }
 
     }

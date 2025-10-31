@@ -66,6 +66,7 @@ class TMBResultActivity : AppCompatActivity() {
             iwarl.launch(Intent(this, IdealWeightActivity::class.java).apply {
                 putExtra(PERSONAL_DATA, personalData)
                 putExtra(RESULT_DATA, resultData)
+                putExtra("IMC_CATEGORY", intent.getStringExtra("IMC_CATEGORY").toString())
             })
         }
     }

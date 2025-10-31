@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Salvar log?"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@id/finish_bt"/>
+        app:layout_constraintBottom_toTopOf="@id/summary_bt"/>
 
     <Button
         android:id="@+id/finish_bt"
@@ -62,6 +62,14 @@
         android:layout_margin="10dp"
         android:text="Finalizar"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/summary_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Resumo"
+        app:layout_constraintBottom_toTopOf="@id/finish_bt"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
