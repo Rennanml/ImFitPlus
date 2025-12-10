@@ -7,8 +7,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.R
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.adapter.LogAdapter
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.controller.UserController
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.databinding.ActivityLogBinding
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.LogItem
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.UserEntity
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.persistence.LogRepository
 
 class LogActivity : AppCompatActivity() {
@@ -16,7 +18,11 @@ class LogActivity : AppCompatActivity() {
         ActivityLogBinding.inflate(layoutInflater)
     }
 
-    private lateinit var data: MutableList<LogItem>;
+    private lateinit var data: MutableList<UserEntity>;
+    private val userController: UserController by lazy {
+        UserController(this)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +33,7 @@ class LogActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        data = LogRepository.getAllLogs(this)
+        data = userController.retrieveUsers()
         val adapter = LogAdapter(this, data)
         lbm.logLv.adapter = adapter
     }

@@ -2,18 +2,23 @@ package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.icu.text.DecimalFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.R
-import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.LogItem
+import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.UserEntity
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class LogAdapter(
     private val context: Context,
-    private val dataSource: List<LogItem>
+    private val dataSource: List<UserEntity>
 ) : BaseAdapter() {
+
+    val df = DecimalFormat("0.00")
 
     override fun getCount(): Int {
         return dataSource.size
@@ -48,12 +53,15 @@ class LogAdapter(
             viewHolder = view.tag as ViewHolder
         }
 
-        val logItem = getItem(position) as LogItem
+        val userEntity = getItem(position) as UserEntity
 
-        viewHolder.imcText?.text = "IMC: ${logItem.imcValue}"
-        viewHolder.tbmText?.text = "TMB: ${logItem.tmbValue}"
-        viewHolder.nameText?.text = logItem.name
-        viewHolder.dateText?.text = logItem.date
+        val dateObject = LocalDateTime.parse(userEntity.registerDate)
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+
+        viewHolder.imcText?.text = "IMC: ${df.format(userEntity.imc)}"
+        viewHolder.tbmText?.text = "TMB: ${userEntity.tmb}"
+        viewHolder.nameText?.text = userEntity.name
+        viewHolder.dateText?.text = dateObject.format(formatter)
 
         return view
     }

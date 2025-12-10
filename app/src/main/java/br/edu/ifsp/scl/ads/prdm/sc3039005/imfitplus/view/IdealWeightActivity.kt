@@ -53,19 +53,6 @@ class IdealWeightActivity : AppCompatActivity() {
 
         // Buttons set on click listeners
 
-        aiwb.finishBt.setOnClickListener {
-            if (aiwb.logCb.isChecked) {
-                val newItem = createLogItem(resultData)
-
-                LogRepository.saveLogItem(this, newItem)
-
-                startActivity(Intent(this, LogActivity::class.java))
-            } else {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
-        }
-
         hsarl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 result ->
             if (result.resultCode == RESULT_OK) {
@@ -83,18 +70,6 @@ class IdealWeightActivity : AppCompatActivity() {
             )
         }
 
-    }
-
-    private fun createLogItem(resultData: ResultData): LogItem {
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val currentDate = sdf.format(Date())
-
-        return LogItem(
-            name = personalData.name,
-            imcValue = resultData.imcValue.toString(),
-            tmbValue = resultData.tmbValue.toString(),
-            date = currentDate
-        )
     }
 
     private fun prepareResult() {
