@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.os.Build
@@ -32,6 +33,7 @@ class HealthSummaryActivity : AppCompatActivity() {
         UserController(this)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(ahsmb.root)
@@ -58,6 +60,8 @@ class HealthSummaryActivity : AppCompatActivity() {
             categoryResultTv.text = imcCategory
         }
 
+        putCardiacData()
+
 
         ahsmb.finishBt.setOnClickListener {
             if (ahsmb.logCb.isChecked) {
@@ -77,6 +81,10 @@ class HealthSummaryActivity : AppCompatActivity() {
         return (personalData.weight * 350) / 1000
     }
 
+    private fun calculateCardiacFrequency(): Int {
+        return 220 - personalData.age
+    }
+
     private fun createUserEntity(resultData: ResultData): UserEntity {
         return UserEntity(
             name = personalData.name,
@@ -86,7 +94,20 @@ class HealthSummaryActivity : AppCompatActivity() {
             activityLevel = personalData.activityLevel,
             imc = resultData.imcValue!!,
             tmb = resultData.tmbValue!!,
-            registerDate = LocalDateTime.now().toString()
+            registerDate = LocalDateTime.now().toString(),
+            age = personalData.age,
+            birthDate = personalData.birthDate.toString(),
+            maxCardiacFrequency = calculateCardiacFrequency()
         )
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun putCardiacData() {
+        val maxFrequency = calculateCardiacFrequency()
+        ahsmb.maxFrequencyResultTv.text = maxFrequency.toString()
+        ahsmb.lightFrequencyResultTv.text = ((maxFrequency * 50) / 100).toString() + " - " + ((maxFrequency * 60) / 100 ).toString()
+        ahsmb.burnFrequencyResultTv.text = ((maxFrequency * 60) / 100).toString() + " - " + ((maxFrequency * 70) / 100 ).toString()
+        ahsmb.aerobicFrequencyResultTv.text = ((maxFrequency * 70) / 100).toString() + " - " + ((maxFrequency * 80) / 100).toString()
+        ahsmb.anaerobicFrequencyResultTv.text = ((maxFrequency * 80) / 100).toString() + " - " + ((maxFrequency * 90) / 100).toString()
     }
 }

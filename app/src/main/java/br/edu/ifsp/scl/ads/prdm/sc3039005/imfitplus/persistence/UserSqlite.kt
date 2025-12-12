@@ -23,6 +23,9 @@ class UserSqlite(context: Context): UserDao {
         private const val TMB_COLUMN = "tmb"
         private const val IDEAL_WEIGHT_COLUMN = "idealWeight"
         private const val REGISTER_DATE_COLUMN = "registerDate"
+        private const val AGE_COLUMN = "age"
+        private const val BIRTH_DATE_COLUMN = "birthDate"
+        private const val MAX_CARDIAC_FREQUENCY_COLUMN = "maxCardiacFrequency"
 
         const val CREATE_USER_TABLE_STATEMENT = "CREATE TABLE IF NOT EXISTS $USER_TABLE ( " +
                 "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -35,7 +38,10 @@ class UserSqlite(context: Context): UserDao {
                 "$IMC_CATEGORY_COLUMN TEXT NOT NULL, " +
                 "$TMB_COLUMN REAL NOT NULL, " +
                 "$IDEAL_WEIGHT_COLUMN REAL NOT NULL, " +
-                "$REGISTER_DATE_COLUMN TEXT NOT NULL );"
+                "$REGISTER_DATE_COLUMN TEXT NOT NULL, " +
+                "$BIRTH_DATE_COLUMN TEXT NOT NULL, " +
+                "$MAX_CARDIAC_FREQUENCY_COLUMN TEXT NOT NULL, " +
+                "$AGE_COLUMN INTEGER NOT NULL );"
     }
 
     private val userDatabase: SQLiteDatabase = context.openOrCreateDatabase(
@@ -80,6 +86,9 @@ class UserSqlite(context: Context): UserDao {
         put(TMB_COLUMN, tmb)
         put(IDEAL_WEIGHT_COLUMN, idealWeight)
         put(REGISTER_DATE_COLUMN, registerDate.toString())
+        put(AGE_COLUMN, age)
+        put(BIRTH_DATE_COLUMN, birthDate)
+        put(MAX_CARDIAC_FREQUENCY_COLUMN, maxCardiacFrequency)
     }
 
     private fun Cursor.toUser() = UserEntity(
@@ -93,6 +102,9 @@ class UserSqlite(context: Context): UserDao {
         imcCategory = getString(getColumnIndexOrThrow(IMC_CATEGORY_COLUMN)),
         tmb = getDouble(getColumnIndexOrThrow(TMB_COLUMN)),
         idealWeight = getDouble(getColumnIndexOrThrow(IDEAL_WEIGHT_COLUMN)),
-        registerDate = getString(getColumnIndexOrThrow(REGISTER_DATE_COLUMN))
+        registerDate = getString(getColumnIndexOrThrow(REGISTER_DATE_COLUMN)),
+        age = getInt(getColumnIndexOrThrow(AGE_COLUMN)),
+        birthDate = getString(getColumnIndexOrThrow(BIRTH_DATE_COLUMN)),
+        maxCardiacFrequency = getInt(getColumnIndexOrThrow(MAX_CARDIAC_FREQUENCY_COLUMN))
     )
 }

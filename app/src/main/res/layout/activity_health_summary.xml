@@ -10,7 +10,7 @@
     <include
         android:id="@+id/toolbar_in"
         layout="@layout/toolbar"/>
-
+    
     <TextView
         android:id="@+id/title_tv"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@id/toolbar_in"
         android:textAlignment="center"
-        android:textSize="24sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/name_label_tv"
@@ -28,13 +28,13 @@
         app:layout_constraintTop_toBottomOf="@id/title_tv"
         android:text="Nome:"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/name_result_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/name_label_tv"/>
 
     <TextView
@@ -44,13 +44,13 @@
         app:layout_constraintTop_toBottomOf="@id/name_result_tv"
         android:text="IMC:"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/imc_result_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/imc_label_tv"/>
 
     <TextView
@@ -60,13 +60,13 @@
         app:layout_constraintTop_toBottomOf="@id/imc_result_tv"
         android:text="Categoria IMC:"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/category_result_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/category_label_tv"/>
 
     <TextView
@@ -76,13 +76,13 @@
         app:layout_constraintTop_toBottomOf="@id/category_result_tv"
         android:text="Peso Ideal:"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/ideal_result_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/ideal_label_tv"/>
 
     <TextView
@@ -92,13 +92,13 @@
         app:layout_constraintTop_toBottomOf="@id/ideal_result_tv"
         android:text="Gasto Calórico:"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/cal_result_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/cal_label_tv"/>
 
     <TextView
@@ -108,14 +108,96 @@
         app:layout_constraintTop_toBottomOf="@id/cal_result_tv"
         android:text="Ingestão de Água:"
         android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/water_result_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/water_label_tv"/>
+
+    <TextView
+        android:id="@+id/max_frequency_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/water_result_tv"
+        android:text="Frequência cardíaca máxima:"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/max_frequency_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/max_frequency_label_tv"/>
+
+    <TextView
+        android:id="@+id/light_frequency_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/max_frequency_result_tv"
+        android:text="Zona leve:"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/light_frequency_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/light_frequency_label_tv"/>
+
+    <TextView
+        android:id="@+id/burn_frequency_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/light_frequency_result_tv"
+        android:text="Zona Queima de Gordura:"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/burn_frequency_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/burn_frequency_label_tv"/>
+
+    <TextView
+        android:id="@+id/aerobic_frequency_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/burn_frequency_result_tv"
+        android:text="Zona Aerobica:"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/aerobic_frequency_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/aerobic_frequency_label_tv"/>
+
+    <TextView
+        android:id="@+id/anaerobic_frequency_label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/aerobic_frequency_result_tv"
+        android:text="Zona Anaerobica:"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/anaerobic_frequency_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/anaerobic_frequency_label_tv"/>
+
+
 
     <CheckBox
         android:id="@+id/log_cb"
@@ -123,7 +205,9 @@
         android:layout_height="wrap_content"
         android:text="Salvar log"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@id/finish_bt"/>
+        app:layout_constraintBottom_toTopOf="@id/finish_bt"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <Button
         android:id="@+id/finish_bt"

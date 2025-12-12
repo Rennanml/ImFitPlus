@@ -8,6 +8,7 @@
     <string name="height">Altura (m)</string>
     <string name="weight">Peso (kg)</string>
     <string name="calcular_imc">Calcular IMC</string>
+    <string name="birth_date">Data de nascimento</string>
 
     <string-array name="activity_levels">
         <item>Selecione</item>

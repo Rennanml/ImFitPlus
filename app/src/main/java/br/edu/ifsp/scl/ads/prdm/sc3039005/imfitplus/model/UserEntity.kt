@@ -5,6 +5,8 @@ import java.time.LocalDateTime
 
 data class UserEntity(
     var id: Int? = -1,
+    var age: Int = -1,
+    var birthDate: String = "",
     var name: String = "",
     var gender: String = "",
     var height: Double = -1.0,
@@ -14,5 +16,6 @@ data class UserEntity(
     var imcCategory: String = "",
     var tmb: Double = -1.0,
     var idealWeight: Double = -1.0,
-    var registerDate: String = LocalDateTime.now().toString()
+    var registerDate: String = LocalDateTime.now().toString(),
+    var maxCardiacFrequency: Int = -1
 ): Serializable

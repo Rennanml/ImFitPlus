@@ -14,6 +14,9 @@ import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.CALLBACK_MES
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.IMC_VALUE
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.Constants.PERSONAL_DATA
 import br.edu.ifsp.scl.ads.prdm.sc3039005.imfitplus.model.PersonalData
+import java.time.LocalDate
+import java.time.Period
+import java.time.temporal.Temporal
 import kotlin.math.pow
 
 class PersonalDataActivity : AppCompatActivity() {
@@ -82,8 +85,11 @@ class PersonalDataActivity : AppCompatActivity() {
     }
 
     private fun createDto(): PersonalData {
+        val birthDate = apdb.birthDateEt.text.toString()
+        val birthDateObject: LocalDate = getDateObjectFromString(birthDate)
+
         val name = apdb.nameEt.text.toString()
-        val age = apdb.ageEt.text.toString().toInt()
+        val age = calculateAge(birthDateObject)
         val height = apdb.heightEt.text.toString().toDouble()
         val weight = apdb.weightEt.text.toString().toDouble()
         val activityLevel = apdb.activityLevelSp.selectedItem.toString()
@@ -97,7 +103,8 @@ class PersonalDataActivity : AppCompatActivity() {
             gender,
             height,
             weight,
-            activityLevel
+            activityLevel,
+            birthDateObject
         )
     }
 
@@ -109,11 +116,8 @@ class PersonalDataActivity : AppCompatActivity() {
             isValid = false
         }
 
-        if (apdb.ageEt.text.isBlank()) {
-            apdb.ageEt.error = "A idade é obrigatória"
-            isValid = false
-        } else if (apdb.ageEt.text.toString().toInt() <= 0) {
-            apdb.ageEt.error = "A idade deve ser um valor positivo"
+        if (apdb.birthDateEt.text.isBlank()) {
+            apdb.birthDateEt.error = "A data de nascimento é obrigatória"
             isValid = false
         }
 
@@ -141,5 +145,17 @@ class PersonalDataActivity : AppCompatActivity() {
 
 
         return isValid
+    }
+
+    private fun calculateAge(birthDate: LocalDate): Int {
+        val currentDate: LocalDate = LocalDate.now()
+
+        return Period.between(birthDate, currentDate).years
+    }
+
+    private fun getDateObjectFromString(string: String): LocalDate {
+        val splitResult = string.split("/")
+
+        return LocalDate.of(splitResult[2].toInt(), splitResult[1].toInt(), splitResult[0].toInt())
     }
 }

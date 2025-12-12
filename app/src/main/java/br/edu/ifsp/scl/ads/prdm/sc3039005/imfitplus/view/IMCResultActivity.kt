@@ -68,7 +68,7 @@ class IMCResultActivity : AppCompatActivity() {
             tmbarl.launch(
                 Intent(this, TMBResultActivity::class.java).apply {
                     putExtra(PERSONAL_DATA, personalData)
-                    putExtra(RESULT_DATA, ResultData(imcValue, null))
+                    putExtra(RESULT_DATA, ResultData(imcValue, null, null))
                     putExtra("IMC_CATEGORY", getIMCResultLabel())
                 })
         }
